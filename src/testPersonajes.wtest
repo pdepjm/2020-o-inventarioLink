@@ -1,0 +1,17 @@
+import personajes.*
+import items.*
+
+test "Si el item de lonk es igual al que le viene, no está prohibido" {
+	// lonk ya viene con la espada
+	assert.notThat(lonk.estaProhibido(espadaMaestra))
+}
+
+test "Si el item de lonk es diferente está prohibido" {
+	// lonk ya viene con la espada
+	assert.that(lonk.estaProhibido(bananaBelica))
+
+}
+
+test "no debería poder agregar un item prohibido" {
+	assert.throwsException({link.agregarItem(espadaMaestra)})
+}
