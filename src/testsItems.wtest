@@ -1,0 +1,12 @@
+import items.*
+
+test "La espada tiene bien su desgaste" {
+
+	assert.equals(100,espada.desgaste())
+
+}
+
+test "La banana tiene bien su desgaste" {
+	banana.nivelPotasio(100)
+	assert.equals(30, banana.desgaste())
+}

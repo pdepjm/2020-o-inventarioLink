@@ -1,40 +1,61 @@
-object espadaMaestra {
+object espada {
 	method desgaste() = 100
 	method esRaro() = true
 	
-	method mejorar(){
-		// No hace nada mejorar!! (pero entiende el mensaje) XD
+	method mejorar() {
+		// debe entender el mensaje, entonces este método va.
+		// peeeeero.... No ponemos nada adentro ¡no hace nada!
 	}
 }
 
-object bananaBelica {
-	var potasio = 1000
+object banana {
+	var nivelPotasio = 50
+	method desgaste() = nivelPotasio * 0.3
+	method nivelPotasio(potasio) {
+		nivelPotasio = potasio
+	}	
+	method esRaro() = nivelPotasio > 100
 	
-	method desgaste() = potasio * 0.3
-	method esRaro() = potasio > 100
-	
-	method mejorar(){
-		potasio *= 1.1
+	method mejorar() {
+		nivelPotasio = nivelPotasio * 1.03	
 	}
 }
 
-object caniaDePescar {
-	var desgaste = 200
+object cania {
+	var desgaste = 0
+	
 	method desgaste() = desgaste
+	
+	// por convención de este lenguaje, si quiero decir "tu desgaste es este",
+	// se usa la convención de poner el mismo nombre que la variable.
+	method desgaste(des) {
+		if(des > 150) {
+			self.error("Che, no puedo tener desgaste tan alto")
+		}
+		desgaste = des
+		// Otra forma sin tirar error:
+		// desgaste = des.min(150)	
+		// El cliente nos dijo que tiene que haber error.
+	}  
+	
 	method esRaro() = false
 	
-	method mejorar(){
-		desgaste += 3
+	method mejorar() {
+		desgaste = desgaste + 3
 	}
 }
 
-object cajaMagica {
-	var item = espadaMaestra
-	method desgaste() = item.desgaste() + 100
-	method esRaro() = item.esRaro()
+object caja {
+	var subitem = cania
+	method desgaste() = subitem.desgaste() + 100
 	
-	method mejorar(){
-		item.mejorar()
+	method subitem(item) {
+		subitem = item
+	}
+	
+	method esRaro() = subitem.esRaro()
+	
+	method mejorar() {
+		subitem.mejorar()
 	}
 }
-

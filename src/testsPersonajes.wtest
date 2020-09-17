@@ -1,0 +1,24 @@
+import personajes.*
+import items.*
+
+test "Si link no tiene suficientes corazones, el item está prohibido" {
+	assert.that(link.estaProhibido(espada))
+}
+
+// Deberíamos pensar todas las clases de equivalencia (no lo hacemos por tiempo)
+
+test "Link puede agregar algo no prohibido" {
+	link.agarrar(cania)
+	// no hace falta assert, porque por defecto siempre se chequea que el test no estalle.
+}
+
+test "Link no puede agarrar algo prohibido" {
+	assert.throwsExceptionWithMessage("No puedo agarrar este item porque está prohibido: espada",{link.agarrar(espada)}) //ajá! le estamos pasando un bloque
+	    // NO ESTAMOS ejecutando link.agarrar
+	    // ¡Si el assert lo ejecuta le va a explotar en la cara!
+	    // pero el assert es vivo.
+	
+}
+
+// Para repetir muchas veces algo:
+// 10.times({nro => espada.mejorar()})
